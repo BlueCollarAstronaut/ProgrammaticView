@@ -7,8 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
-
 
 public class MainActivity extends ActionBarActivity {
 
@@ -16,13 +14,19 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // "Master Div" is, basically the full-page container
         DivLayout masterDiv = new DivLayout(this);
+
+        // This util stores the context for future control creations
         GuiUtil util = new GuiUtil(this);
 
-        RelativeLayout.LayoutParams headerParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200);
-        DivLayout headerDiv = masterDiv.addDiv(headerParams);
+        // Create a "header" 200 pixels tall
+        DivLayout headerDiv = masterDiv.addDiv(ViewGroup.LayoutParams.MATCH_PARENT, 200);
         headerDiv.setBackgroundColor(Color.DKGRAY);
 
+        // Stick a couple buttons in the header
+        // NOTE: These buttons intentionally overlap each other as well as the header boundaries to
+        // demonstrate the flexibility (risk?) of the fixed-sizing/-locating
         Button myButton1 = util.Create(Button.class, 50, 60, 250, 300);
         myButton1.setText("Button 1");
         myButton1.setBackgroundColor(Color.BLUE);
@@ -33,21 +37,8 @@ public class MainActivity extends ActionBarActivity {
         myButton2.setBackgroundColor(Color.RED);
         headerDiv.addView(myButton2);
 
-
-        /*
-        RelativeLayout mainDiv = new RelativeLayout(this);
-        RelativeLayout headerDiv = new RelativeLayout(this);
-
-        headerDiv.setLayoutParams(new RelativeLayout.LayoutParams(100, ViewGroup.LayoutParams.MATCH_PARENT));
-        mainDiv.setBackgroundColor(Color.GREEN);
-        headerDiv.setBackgroundColor(Color.CYAN);
-
-        RelativeLayout.LayoutParams params;
-
-        mainDiv.addView(headerDiv);
-
-        */
-
+        // The header was added to the main div as part of its creation, so it's sufficient to
+        // set the content view to the masterDiv
         setContentView(masterDiv);
     }
 

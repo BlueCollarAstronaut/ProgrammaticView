@@ -21,11 +21,15 @@ public class DivLayout extends RelativeLayout {
         return child;
     }
 
-    public DivLayout addDiv(ViewGroup.LayoutParams layoutParams){
-        DivLayout child = new DivLayout(this.getContext());
-        child.setLayoutParams(layoutParams);
+    private DivLayout addDiv(ViewGroup.LayoutParams layoutParams){
+        DivLayout child = new DivLayout(this.getContext(), layoutParams);
         this.addView(child);
         return child;
+    }
+
+    public DivLayout addDiv(int width, int height){
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(width, height);
+        return addDiv(params);
     }
 
 }
