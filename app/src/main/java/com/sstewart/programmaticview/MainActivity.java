@@ -17,28 +17,21 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         DivLayout masterDiv = new DivLayout(this);
+        GuiUtil util = new GuiUtil(this);
 
         RelativeLayout.LayoutParams headerParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200);
         DivLayout headerDiv = masterDiv.addDiv(headerParams);
         headerDiv.setBackgroundColor(Color.DKGRAY);
 
-        Button myButton1 = new Button(this);
-        // Set box size and offset
-        RelativeLayout.LayoutParams button1Params = new RelativeLayout.LayoutParams(250, 300);
-        button1Params.leftMargin = 50;
-        button1Params.topMargin = 60;
+        Button myButton1 = util.Create(Button.class, 50, 60, 250, 300);
         myButton1.setText("Button 1");
         myButton1.setBackgroundColor(Color.BLUE);
-        headerDiv.addView(myButton1, button1Params);
+        headerDiv.addView(myButton1);
 
-        Button myButton2 = new Button(this);
-        // Set box size and offset (intentionally done to overlap other button)
-        RelativeLayout.LayoutParams button2Params = new RelativeLayout.LayoutParams(250, 250);
-        button2Params.leftMargin = 225;
-        button2Params.topMargin = 90;
+        Button myButton2 = util.Create(Button.class, 225, 90, 250, 250);
         myButton2.setText("Button 2");
         myButton2.setBackgroundColor(Color.RED);
-        headerDiv.addView(myButton2, button2Params);
+        headerDiv.addView(myButton2);
 
 
         /*
